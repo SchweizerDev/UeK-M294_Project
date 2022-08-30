@@ -4,14 +4,17 @@ import TaskList from './TaskList';
 import ITask from './Interfaces';
 import AddTaskForm from './AddTaskForm';
 import EditTaskForm from "./EditTaskForm";
+import axios from "axios";
 
 
 const defaultTasks: Array<ITask> = [
-    {"taskDescription": "Feed the cats", "completed": false, "taskId": 1},
-    {"taskDescription": "Test the software", "completed": false, "taskId": 2},
+    {"title": "Feed the cats", "completed": false, "id": 1},
+    {"title": "Test the software", "completed": false, "id": 2},
 ];
 
-const emptyTask: ITask = {"taskDescription": "", "completed": false, "taskId": 0};
+const emptyTask: ITask = {"title": "", "completed": false, "id": 0};
+
+const baseURL = "http://localhost:3000/";
 
 function App() {
     const [tasks, setTasks] = useState(defaultTasks);
@@ -20,17 +23,22 @@ function App() {
     function addTask(task: ITask) {
         let highestId = 0;
         for (let i = 0; i < tasks.length; i++) {
-            let currentId = tasks[i].taskId ?? 0;
+            let currentId = tasks[i].id ?? 0;
             if (currentId > highestId) {
                 highestId = currentId;
             }
         }
-        task.taskId = highestId + 1;
+        task.id = highestId + 1;
+        axios
+            .post(baseURL + 'tasks', task)
+            .then((response) => {
+                console.log(response);
+            });
         setTasks([...tasks, task]);
     }
 
     function deleteTask(taskToDelete: ITask) {
-        let tasksWithoutDeleted = tasks.filter(currentTask => taskToDelete.taskId !== currentTask.taskId);
+        let tasksWithoutDeleted = tasks.filter(currentTask => taskToDelete.id !== currentTask.id);
         setTasks(tasksWithoutDeleted);
     }
 
@@ -39,9 +47,17 @@ function App() {
     }
 
     function editTask(task: ITask) {
-        // Find correct todo item to update
-        setTasks(tasks.map(i => (i.taskId === task.taskId ? task : i)));
+        setTasks(tasks.map(i => (i.id === task.id ? task : i)));
     }
+
+    //Get Request
+    React.useEffect(() => {
+        axios.get(baseURL + 'tasks').then((response) => {
+            setTasks(response.data);
+        });
+    }, []);
+
+    if (!tasks) return null;
 
     return (
         <div className="App">

@@ -6,7 +6,7 @@ export interface IProps {
     taskToEdit: ITask;
 }
 
-const initTask = {"taskDescription": "", "taskId": 0, "completed": false};
+const initTask = {"title": "", "id": 0, "completed": false};
 
 function EditTaskForm(props: IProps) {
     const [formValue, setFormValue] = useState(props.taskToEdit ?? initTask);
@@ -26,20 +26,20 @@ function EditTaskForm(props: IProps) {
         <div className="editTask">
             <div className="container">
             <p><br/></p>
-            <h2>Edit Task {props.taskToEdit?.taskId}</h2>
+            <h2>Edit Task {props.taskToEdit?.id}</h2>
             <div>
             <form className="formEdit" onSubmit={onFormSubmit}>
                 <input
                     type="text"
                     placeholder="Please enter a Task"
-                    name="taskDescription"
-                    value={formValue.taskDescription}
-                    className="form__field"
+                    name="title"
+                    value={formValue.title}
+                    className="form-control"
                     onChange={onInputChange}
                     required
                 />
-                <p><br/></p>
-                <button className="button">Edit</button>
+                <br/>
+                <button className="bi-pencil-fill btn btn-secondary bi" id="editButton"> Save</button>
             </form>
             </div>
             </div>

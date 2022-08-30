@@ -22,26 +22,32 @@ function EditTaskForm(props: IProps) {
         props.edit(formValue);
     }
 
+    function completeTask(e: React.FormEvent<HTMLFormElement>) {
+
+    }
+
     return (
         <div className="editTask">
             <div className="container">
-            <p><br/></p>
-            <h2>Edit Task {props.taskToEdit?.id}</h2>
-            <div>
-            <form className="formEdit" onSubmit={onFormSubmit}>
-                <input
-                    type="text"
-                    placeholder="Please enter a Task"
-                    name="title"
-                    value={formValue.title}
-                    className="form-control"
-                    onChange={onInputChange}
-                    required
-                />
-                <br/>
-                <button className="bi-pencil-fill btn btn-secondary bi" id="editButton"> Save</button>
-            </form>
-            </div>
+                <p><br/></p>
+                <h2>Edit Task {props.taskToEdit?.id}</h2>
+                <div>
+                    <form className="formEdit" onSubmit={onFormSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Please enter a Task"
+                            name="title"
+                            value={formValue.title}
+                            className="form-control"
+                            onChange={onInputChange}
+                            required
+                        />
+                        <br/>
+                        <button className="bi-check2-circle btn btn-secondary bi"> Complete Task</button>
+                        <div className="space"></div>
+                        <button className="bi-pencil-fill btn btn-secondary bi"> Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     );

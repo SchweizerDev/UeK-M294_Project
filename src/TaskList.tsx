@@ -3,7 +3,7 @@ import ITask from './Interfaces'
 export interface IProps {
     tasks: ITask[];
     deleteTask: (task:ITask) => void;
-    editTask: (task: ITask) => void;
+    setTaskToEdit: (task: ITask) => void;
 }
 
 function TaskList(props: IProps) {
@@ -13,7 +13,7 @@ function TaskList(props: IProps) {
     }
 
     function editTask(task: ITask) {
-        props.editTask(task);
+        props.setTaskToEdit(task);
     }
 
     return (

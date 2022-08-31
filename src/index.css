@@ -5,3 +5,7 @@
     height: auto;
     display: inline-block;
 }
+
+h5 {
+    position: center;
+}

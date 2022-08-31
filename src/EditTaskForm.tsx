@@ -22,7 +22,7 @@ function EditTaskForm(props: IProps) {
         props.edit(formValue);
     }
 
-    function completeTask() {
+    function changeTaskStatus() {
         formValue.completed = !formValue.completed;
         props.edit(formValue);
     }
@@ -44,7 +44,7 @@ function EditTaskForm(props: IProps) {
                             required
                         />
                         <br/>
-                        <button className="bi-check2-circle btn btn-secondary bi" onClick={completeTask}> Change
+                        <button className="bi-check2-circle btn btn-secondary bi" onClick={changeTaskStatus}> Change
                             Status
                         </button>
                         <div className="space"></div>

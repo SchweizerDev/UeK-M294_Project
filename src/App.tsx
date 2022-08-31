@@ -5,7 +5,7 @@ import ITask from './Interfaces';
 import AddTaskForm from './AddTaskForm';
 import EditTaskForm from "./EditTaskForm";
 import axios from "axios";
-import Login from "./Login";
+import Login, {ILoginProps} from "./Login";
 
 
 const defaultTasks: Array<ITask> = [
@@ -21,6 +21,7 @@ function App() {
     const [tasks, setTasks] = useState(defaultTasks);
     const [taskToEdit, setTaskToEdit] = useState(emptyTask);
     const [token, setToken] = useState("");
+    const [login, setLogin] = useState("");
 
     function updateToken(token: string) {
       setToken(token);
@@ -74,7 +75,7 @@ function App() {
     if (!tasks) return null;
 
     if (token === "") {
-        return <Login setLoginToken={updateToken}></Login>
+        return <Login setLoginToken={updateToken} email={""} password={""}></Login>
     } else {
         return (
             <div className="App">

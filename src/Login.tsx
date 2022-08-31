@@ -1,25 +1,77 @@
 import axios from "axios";
+import React, {useState} from "react";
 
 const baseURL = "http://localhost:3000/auth/jwt/";
 
 export interface ILoginProps {
     setLoginToken : (token: string) => void;
+    email : string;
+    password : string;
 }
 
-function Login(props: ILoginProps) {
+const initLogin = {"email": "", "password": ""};
 
-    function onLogin() {
+function Login(props: ILoginProps) {
+    const [formValue, setFormValue] = useState(initLogin);
+
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setFormValue({...formValue, [name]: value});
+    };
+
+    function onLogin(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
         axios.post(baseURL + 'sign', {
-            "email": "irgendeine@email.adresse", "password": "m294"
+            "email": `${formValue.email}`, "password": `${formValue.password}`
         }).then((response) => {
             console.log(response);
             let token = response.data.token;
             props.setLoginToken(token);
+        }).catch(err => {
+            console.log(err);
+            alert("Your credentials are incorrect! \nPlease try again.")
         });
+        e.preventDefault();
     }
+
     return (
-        <button onClick={onLogin}>Test Login Token</button>
-    )
-}
+        <div className="login">
+            <div className="container m-3 align-content-center">
+                <h5>Login</h5>
+                <div>
+                    <form className="form-floating w-50" onSubmit={onLogin}>
+                        <input
+                            className="form-control"
+                            type="email"
+                            placeholder="Please enter your Email"
+                            name="email"
+                            id="floatingInputEMail"
+                            value={formValue.email}
+                            onChange={onInputChange}
+                            required
+                        />
+                        <label htmlFor="floatingInputEMail">E-Mail</label>
+                        <br/>
+                    </form>
+                    <form className="form-floating w-50" onSubmit={onLogin}>
+                        <input
+                            className="form-control"
+                            type="password"
+                            placeholder="Please enter your Password"
+                            name="password"
+                            id="floatingInputPassword"
+                            value={formValue.password}
+                            onChange={onInputChange}
+                            required
+                        />
+                        <label htmlFor="floatingInputPassword">Password</label>
+                        <br/>
+                        <button className="btn btn-success bi bi-chevron-double-right"> Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default Login

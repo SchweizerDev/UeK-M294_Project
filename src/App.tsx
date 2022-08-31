@@ -5,6 +5,7 @@ import ITask from './Interfaces';
 import AddTaskForm from './AddTaskForm';
 import EditTaskForm from "./EditTaskForm";
 import axios from "axios";
+import Login from "./Login";
 
 
 const defaultTasks: Array<ITask> = [
@@ -19,6 +20,11 @@ const baseURL = "http://localhost:3000/";
 function App() {
     const [tasks, setTasks] = useState(defaultTasks);
     const [taskToEdit, setTaskToEdit] = useState(emptyTask);
+    const [token, setToken] = useState("");
+
+    function updateToken(token: string) {
+      setToken(token);
+    }
 
     function addTask(task: ITask) {
         let highestId = 0;
@@ -29,16 +35,17 @@ function App() {
             }
         }
         task.id = highestId + 1;
-        axios.post(baseURL + 'tasks', {"title": task.title})
+        axios.post(baseURL + 'auth/jwt/tasks', {"title": task.title}, {headers: {'Authorization': `Bearer ${token}`}})
             .then((response) => {
                 console.log(response);
                 setTasks([...tasks, response.data]);
             });
     }
 
+
     function deleteTask(taskToDelete: ITask) {
         let tasksWithoutDeleted = tasks.filter(currentTask => taskToDelete.id !== currentTask.id);
-        axios.delete(baseURL + "task/" + taskToDelete.id).then(() => {
+        axios.delete(baseURL + "auth/jwt/task/" + taskToDelete.id, {headers: {'Authorization': `Bearer ${token}`}}).then(() => {
             setTasks(tasksWithoutDeleted)
         });
         setTasks(tasksWithoutDeleted);
@@ -49,7 +56,7 @@ function App() {
     }
 
     function editTask(task: ITask) {
-        axios.put(baseURL + 'tasks', task).then((response) => {
+        axios.put(baseURL + 'auth/jwt/tasks', task, {headers: {'Authorization': `Bearer ${token}`}}).then((response) => {
             console.log(response)
         });
         setTasks(tasks.map(i => (i.id === task.id ? task : i)));
@@ -57,20 +64,26 @@ function App() {
 
     //Get Request
     React.useEffect(() => {
-        axios.get(baseURL + 'tasks').then((response) => {
-            setTasks(response.data);
-        });
-    }, []);
+        if(token !== "") {
+            axios.get(baseURL + 'auth/jwt/tasks', {headers: {'Authorization': `Bearer ${token}`}}).then((response) => {
+                setTasks(response.data);
+            });
+        }
+    }, [token]);
 
     if (!tasks) return null;
 
-    return (
-        <div className="App">
-            <TaskList tasks={tasks} deleteTask={deleteTask} setTaskToEdit={setEditTask}></TaskList>
-            <EditTaskForm edit={editTask} taskToEdit={taskToEdit}></EditTaskForm>
-            <AddTaskForm add={addTask}></AddTaskForm>
-        </div>
-    );
+    if (token === "") {
+        return <Login setLoginToken={updateToken}></Login>
+    } else {
+        return (
+            <div className="App">
+                <TaskList tasks={tasks} deleteTask={deleteTask} setTaskToEdit={setEditTask}></TaskList>
+                <EditTaskForm edit={editTask} taskToEdit={taskToEdit}></EditTaskForm>
+                <AddTaskForm add={addTask}></AddTaskForm>
+            </div>
+        );
+    }
 }
 
 export default App;

@@ -30,7 +30,7 @@ function EditTaskForm(props: IProps) {
     return (
         <div className="editTask">
             <div className="container">
-                <p><br/></p>
+                <br/>
                 <h2>Edit Task {props.taskToEdit?.id}</h2>
                 <div>
                     <form className="formEdit" onSubmit={onFormSubmit}>

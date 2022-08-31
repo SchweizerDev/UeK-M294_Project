@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# ToDo-List in JavaScript/TypeScript
+
+This web page contains a ToDo List with a user identification. 
+The project works with a backend via an API.
+
+## Functions:
+
+* Add ToDo's 
+* Delete ToDo's 
+* Edit ToDo's 
+* Adjust ToDo status
+
+To use this project, it needs the working backend.
+Information on how to start the application can be found below
+
+Link to the Repo on GitHub: [Click Here](https://github.com/SchweizerDev/UeK-M294_Project).
+
+# How to use this project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

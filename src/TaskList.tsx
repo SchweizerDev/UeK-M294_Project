@@ -1,4 +1,5 @@
 import ITask from './Interfaces'
+import React from "react";
 
 export interface IProps {
     tasks: ITask[];
@@ -17,15 +18,15 @@ function TaskList(props: IProps) {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container m-5">
             <table className="table table-sm">
                 <thead className='table-primary'>
                 <tr>
-                    <td>ID</td>
-                    <td>Titel</td>
-                    <td>Completed</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td><i>ID</i></td>
+                    <td><i>Titel</i></td>
+                    <td><i>Completed</i></td>
+                    <td><i>Edit</i></td>
+                    <td><i>Delete</i></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,7 +34,7 @@ function TaskList(props: IProps) {
                     return (
                         <tr key={task.id}>
                             <td>{task.id}</td>
-                            <td>{task.title}</td>
+                            <td><strong>{task.title}</strong></td>
                             <td>{task.completed ? "Yes" : "No"}</td>
                             <td>
                                 <button className="btn btn-secondary bi bi-pencil-fill"

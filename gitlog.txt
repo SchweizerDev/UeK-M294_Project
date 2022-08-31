@@ -1,0 +1,59 @@
+commit 8993b5fbf72dffbcc78db56d6a048ee9709e07ce (HEAD -> master, origin/master)
+Author: Luca <lucadubi@gmail.com>
+Date:   Wed Aug 31 13:55:14 2022 +0200
+
+    implement Login window with error respond check, added background picture
+
+commit ee895957dd1823b9a1415ad0abcc2898fb1ccca9
+Author: Luca <lucadubi@gmail.com>
+Date:   Wed Aug 31 11:00:29 2022 +0200
+
+    add login class and implement authentication
+
+commit 66d65672a8a9f008a3466f1bf32f9992d67df7b0
+Author: Luca <lucadubi@gmail.com>
+Date:   Wed Aug 31 10:37:59 2022 +0200
+
+    update readme
+
+commit 2e00ef7ef58fad34e8ea9d5ccb73ada9ef3ccc74
+Author: Luca <lucadubi@gmail.com>
+Date:   Wed Aug 31 08:40:40 2022 +0200
+
+    reformat code, added favIcon, change website name, change Task Complete button to Change Status, added ESLint
+
+commit 2b64c8d86788c732aca6b4e9948e0a84c3c37d9e
+Author: Luca <lucadubi@gmail.com>
+Date:   Tue Aug 30 16:20:44 2022 +0200
+
+    add delete/put and add new Task complete button
+
+commit 51b07061af731161475e559346d40b4a6661be65
+Author: Luca <lucadubi@gmail.com>
+Date:   Tue Aug 30 14:48:21 2022 +0200
+
+    add api to backend server and added get/post request
+
+commit 304a1ed7197ba91c17d0e3748359e85eec360ff9
+Author: Luca <lucadubi@gmail.com>
+Date:   Tue Aug 30 11:29:51 2022 +0200
+
+    add edit task function
+
+commit 9a9e7e8d95d9805d9c60662aa2a52fd8228f2847
+Author: Luca <lucadubi@gmail.com>
+Date:   Tue Aug 30 10:15:28 2022 +0200
+
+    add button css and implement delete task
+
+commit c2ad1cee7c29a0d8b031219a03dbffcb4a3b6718
+Author: Florian Bosshard <florian.bosshard@gmail.com>
+Date:   Mon Aug 29 20:15:04 2022 +0200
+
+    List and Create functionality
+
+commit c072791772db3fbc0ce9941aa8441f7448e5202c
+Author: Florian Bosshard <florian.bosshard@gmail.com>
+Date:   Mon Aug 29 17:38:51 2022 +0200
+
+    Initialize project using Create React App

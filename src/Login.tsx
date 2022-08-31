@@ -4,9 +4,9 @@ import React, {useState} from "react";
 const baseURL = "http://localhost:3000/auth/jwt/";
 
 export interface ILoginProps {
-    setLoginToken : (token: string) => void;
-    email : string;
-    password : string;
+    setLoginToken: (token: string) => void;
+    email: string;
+    password: string;
 }
 
 const initLogin = {"email": "", "password": ""};
@@ -37,6 +37,7 @@ function Login(props: ILoginProps) {
     return (
         <div className="login">
             <div className="container m-3 align-content-center">
+                <br></br>
                 <h5>Login</h5>
                 <div>
                     <form className="form-floating w-50" onSubmit={onLogin}>

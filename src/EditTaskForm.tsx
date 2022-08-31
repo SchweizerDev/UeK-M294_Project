@@ -44,7 +44,7 @@ function EditTaskForm(props: IProps) {
                             required
                         />
                         <br/>
-                        <button className="bi-check2-circle btn btn-secondary bi" onClick={changeTaskStatus}> Change
+                        <button className="bi-check2-circle btn btn-info" onClick={changeTaskStatus}> Change
                             Status
                         </button>
                         <div className="space"></div>

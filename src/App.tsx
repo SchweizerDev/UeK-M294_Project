@@ -5,7 +5,7 @@ import ITask from './Interfaces';
 import AddTaskForm from './AddTaskForm';
 import EditTaskForm from "./EditTaskForm";
 import axios from "axios";
-import Login, {ILoginProps} from "./Login";
+import Login from "./Login";
 
 
 const defaultTasks: Array<ITask> = [
@@ -21,10 +21,9 @@ function App() {
     const [tasks, setTasks] = useState(defaultTasks);
     const [taskToEdit, setTaskToEdit] = useState(emptyTask);
     const [token, setToken] = useState("");
-    const [login, setLogin] = useState("");
 
     function updateToken(token: string) {
-      setToken(token);
+        setToken(token);
     }
 
     function addTask(task: ITask) {
@@ -50,6 +49,7 @@ function App() {
             setTasks(tasksWithoutDeleted)
         });
         setTasks(tasksWithoutDeleted);
+        alert("Task '" + taskToDelete.title + "' deleted.")
     }
 
     function setEditTask(task: ITask) {
@@ -65,7 +65,7 @@ function App() {
 
     //Get Request
     React.useEffect(() => {
-        if(token !== "") {
+        if (token !== "") {
             axios.get(baseURL + 'auth/jwt/tasks', {headers: {'Authorization': `Bearer ${token}`}}).then((response) => {
                 setTasks(response.data);
             });

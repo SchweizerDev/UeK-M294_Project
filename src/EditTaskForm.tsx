@@ -22,8 +22,9 @@ function EditTaskForm(props: IProps) {
         props.edit(formValue);
     }
 
-    function completeTask(e: React.FormEvent<HTMLFormElement>) {
-
+    function completeTask() {
+        formValue.completed = !formValue.completed;
+        props.edit(formValue);
     }
 
     return (
@@ -43,7 +44,9 @@ function EditTaskForm(props: IProps) {
                             required
                         />
                         <br/>
-                        <button className="bi-check2-circle btn btn-secondary bi"> Complete Task</button>
+                        <button className="bi-check2-circle btn btn-secondary bi" onClick={completeTask}> Change
+                            Status
+                        </button>
                         <div className="space"></div>
                         <button className="bi-pencil-fill btn btn-secondary bi"> Save</button>
                     </form>

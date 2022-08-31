@@ -5,7 +5,6 @@ import ITask from './Interfaces';
 import AddTaskForm from './AddTaskForm';
 import EditTaskForm from "./EditTaskForm";
 import axios from "axios";
-import taskList from "./TaskList";
 
 
 const defaultTasks: Array<ITask> = [
@@ -31,14 +30,17 @@ function App() {
         }
         task.id = highestId + 1;
         axios.post(baseURL + 'tasks', {"title": task.title})
-            .then((response) => {console.log(response);
+            .then((response) => {
+                console.log(response);
                 setTasks([...tasks, response.data]);
             });
     }
 
     function deleteTask(taskToDelete: ITask) {
         let tasksWithoutDeleted = tasks.filter(currentTask => taskToDelete.id !== currentTask.id);
-        axios.delete(baseURL + "task/" + taskToDelete.id).then(() => {setTasks(tasksWithoutDeleted)});
+        axios.delete(baseURL + "task/" + taskToDelete.id).then(() => {
+            setTasks(tasksWithoutDeleted)
+        });
         setTasks(tasksWithoutDeleted);
     }
 
@@ -47,13 +49,17 @@ function App() {
     }
 
     function editTask(task: ITask) {
-        axios.put(baseURL + 'tasks', task).then((response) => {console.log(response)});
+        axios.put(baseURL + 'tasks', task).then((response) => {
+            console.log(response)
+        });
         setTasks(tasks.map(i => (i.id === task.id ? task : i)));
     }
 
     //Get Request
     React.useEffect(() => {
-        axios.get(baseURL + 'tasks').then((response) => {setTasks(response.data);});
+        axios.get(baseURL + 'tasks').then((response) => {
+            setTasks(response.data);
+        });
     }, []);
 
     if (!tasks) return null;

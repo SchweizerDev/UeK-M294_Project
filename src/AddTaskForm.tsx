@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import ITask from './Interfaces'
-import axios from "axios";
 
 export interface IProps {
     add: (newItem: ITask) => void;
 }
 
 const initTask = {"title": "", "id": 0, "completed": false};
-const baseURL = "http://localhost:3000/";
 
 function AddTaskForm(props: IProps) {
     const [formValue, setFormValue] = useState(initTask);
@@ -25,23 +23,23 @@ function AddTaskForm(props: IProps) {
     return (
         <div className="addTask">
             <div className="container">
-            <p><br/></p>
-            <h2>Add new Task</h2>
-            <div>
-            <form className="formAdd" onSubmit={onFormSubmit}>
-                <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Please enter a Task"
-                    name="title"
-                    value={formValue.title}
-                    onChange={onInputChange}
-                    required
-                />
-                <br/>
-                <button className="bi bi-arrow-return-left btn btn-success"> Add new Task</button>
-            </form>
-            </div>
+                <p><br/></p>
+                <h2>Add new Task</h2>
+                <div>
+                    <form className="formAdd" onSubmit={onFormSubmit}>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Please enter a Task"
+                            name="title"
+                            value={formValue.title}
+                            onChange={onInputChange}
+                            required
+                        />
+                        <br/>
+                        <button className="bi bi-arrow-return-left btn btn-success"> Add new Task</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
